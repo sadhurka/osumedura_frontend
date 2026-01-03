@@ -1,6 +1,6 @@
 // src/api/index.js
 
-const API_URL = (import.meta.env.VITE_API_URL || 'https://osumedura-backend.vercel.app').replace(/\/$/, '');
+const API_URL = import.meta.env.VITE_API_URL.replace(/\/$/, '');
 
 export async function fetchProducts() {
   try {

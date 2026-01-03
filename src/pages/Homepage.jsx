@@ -429,7 +429,7 @@ const HomePage = () => {
             <MenuIcon isOpen={mobileNavOpen} />
           </button>
           <div className="flex-1 flex justify-center">
-            <img src={logo} alt="OSUMEDURA PHARMACY" className="h-9" style={{objectFit:'contain'}} />
+            <img src={logo} alt="OSUMEDURA PHARMACY" className="h-36 md:h-9  logo1" style={{objectFit:'contain', maxHeight: '150px'}} />
           </div>
           <div className="flex items-center gap-1">
             <div className="relative">
