@@ -514,7 +514,7 @@ const HomePage = () => {
                     <a href="#medical-devices/supports-braces" className="block text-lg font-extrabold tracking-wider uppercase hover:underline hover:text-[#FFD6F6] transition cursor-pointer">Supports & Braces</a>
                   </div>
                   <div className="flex-1 flex items-center justify-center pointer-events-none">
-                    <img src="/assets/medical-devices.jpg" alt="Medical Devices" className="rounded-lg shadow-lg object-contain max-h-[220px] bg-white/10 p-2" />
+                    {/* Removed missing medical-devices.jpg image */}
                   </div>
                 </div>
             </div>
@@ -532,7 +532,7 @@ const HomePage = () => {
                     <a href="#wellness/immunity" className="block text-lg font-extrabold tracking-wider uppercase hover:underline hover:text-[#FFD6F6] transition cursor-pointer">Immunity</a>
                   </div>
                   <div className="flex-1 flex items-center justify-center pointer-events-none">
-                    <img src="/assets/wellness.jpg" alt="Wellness" className="rounded-lg shadow-lg object-contain max-h-[220px] bg-white/10 p-2" />
+                    {/* Removed missing wellness.jpg image */}
                   </div>
                 </div>
             </div>
@@ -550,7 +550,7 @@ const HomePage = () => {
                     <a href="#personal-care/oral-care" className="block text-lg font-extrabold tracking-wider uppercase hover:underline hover:text-[#FFD6F6] transition cursor-pointer">Oral Care</a>
                   </div>
                   <div className="flex-1 flex items-center justify-center pointer-events-none">
-                    <img src="/assets/personal-care.jpg" alt="Personal Care" className="rounded-lg shadow-lg object-contain max-h-[220px] bg-white/10 p-2" />
+                    {/* Removed missing personal-care.jpg image */}
                   </div>
                 </div>
             </div>
