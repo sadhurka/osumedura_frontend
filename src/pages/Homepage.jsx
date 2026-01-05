@@ -93,14 +93,14 @@ const ProductCard = ({ product }) => {
           </div>
 
           <div className="flex justify-center items-center mb-[15px] px-3 py-2">
-            <span className="bg-[#e8f7f7] text-[#0ea5a3] font-semibold text-base px-5 py-2 rounded-full shadow-sm">
+            <span className="bg-[#e8f7f7] text-[#00B4D8] font-semibold text-base px-5 py-2 rounded-full shadow-sm">
               Rs {product.price}
             </span>
           </div>
         </div>
 
         <button
-          className="w-[160px] h-[35px] mx-auto text-base font-semibold border-2 border-[#0EA5A3] text-[#0EA5A3] rounded-lg bg-white hover:bg-[#0EA5A3] hover:text-[white] transition-all duration-300 tracking-wide shadow-md px-4"
+          className="w-[160px] h-[35px] mx-auto text-base font-semibold border-2 border-[#00B4D8] text-[#00B4D8] rounded-lg bg-white hover:bg-[#00B4D8] hover:text-[white] transition-all duration-300 tracking-wide shadow-md px-4"
           style={{ boxShadow: '0 2px 8px 0 rgba(14,165,163,0.10)' }}
         >
           VIEW PRODUCT
@@ -143,7 +143,7 @@ const ArticleCard = ({ article }) => {
           </div>
 
           <div className="flex justify-center items-center mb-[15px] px-3 py-2">
-            <span className="bg-[#e8f7f7] text-[#0ea5a3] font-semibold text-base px-5 py-2 rounded-full shadow-sm">
+            <span className="bg-[#e8f7f7] text-[#00B4D8] font-semibold text-base px-5 py-2 rounded-full shadow-sm">
               {article.readTime} min read
             </span>
           </div>
@@ -151,7 +151,7 @@ const ArticleCard = ({ article }) => {
 
         <button
           onClick={handleReadMore}
-          className="w-[160px] h-[35px] mx-auto text-base font-semibold border-2 border-[#0EA5A3] text-[#0EA5A3] rounded-lg bg-white hover:bg-[#0EA5A3] hover:text-[white] transition-all duration-300 tracking-wide shadow-md px-4"
+          className="w-[160px] h-[35px] mx-auto text-base font-semibold border-2 border-[#00B4D8] text-[#00B4D8] rounded-lg bg-white hover:bg-[#00B4D8] hover:text-[white] transition-all duration-300 tracking-wide shadow-md px-4"
           style={{ boxShadow: '0 2px 8px 0 rgba(14,165,163,0.10)' }}
         >
           READ MORE
@@ -762,7 +762,7 @@ const HomePage = () => {
                   {/* Left Navigation Button */}
                   <button
                     onClick={handlePrevArticles}
-                    className="flex-shrink-0 w-[50px] h-[50px] rounded-full bg-[#0EA5A3] text-white font-bold text-2xl flex items-center justify-center hover:bg-[#0D8C8B] transition shadow-lg hover:shadow-xl article-nav-button"
+                    className="flex-shrink-0 w-[50px] h-[50px] rounded-full bg-[#00B4D8] text-white font-bold text-2xl flex items-center justify-center hover:bg-[#0090a7] hover:text-white transition shadow-lg hover:shadow-xl article-nav-button"
                     title="Previous articles"
                   >
                     ←
@@ -777,7 +777,7 @@ const HomePage = () => {
                   {/* Right Navigation Button */}
                   <button
                     onClick={handleNextArticles}
-                    className="flex-shrink-0 w-[50px] h-[50px] rounded-full bg-[#0EA5A3] text-white font-bold text-2xl flex items-center justify-center hover:bg-[#0D8C8B] transition shadow-lg hover:shadow-xl article-nav-button"
+                    className="flex-shrink-0 w-[50px] h-[50px] rounded-full bg-[#00B4D8] text-white font-bold text-2xl flex items-center justify-center hover:bg-[#0090a7] hover:text-white transition shadow-lg hover:shadow-xl article-nav-button"
                     title="Next articles"
                   >
                     →
