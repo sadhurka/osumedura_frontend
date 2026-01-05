@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 // InlineSlider removed. We'll render carousels directly below.
 import { fetchProducts } from '../api';
 // Assuming these imports are correct based on your file structure
@@ -554,9 +555,9 @@ const HomePage = () => {
                   </div>
                 </div>
             </div>
-            <a href="#" className="mr-[20px] navtop px-3 py-1 rounded hover:bg-[#0EA5A3]/30 transition hover:text-[#FFBB5B]">About Us</a>
-            <a href="#" className="mr-[20px] navtop px-3 py-1 rounded hover:bg-[#0EA5A3]/30 transition hover:text-[#FFBB5B]">Contact Us</a>
-            <a href="#" className="navtop flex items-center justify-center w-[180px] h-[32px] bg-[#023E8A] px-4 rounded hover:bg-[#FFBB5B] transition">Prescription Upload</a>
+            <Link to="/about" className="mr-[20px] navtop px-3 py-1 rounded hover:bg-[#0EA5A3]/30 transition hover:text-[#FFBB5B]">About Us</Link>
+            <Link to="/contact" className="mr-[20px] navtop px-3 py-1 rounded hover:bg-[#0EA5A3]/30 transition hover:text-[#FFBB5B]">Contact Us</Link>
+            <a href="#" className="navtop flex items-center justify-center w-[180px] h-[32px] bg-[#1A3541] px-4 rounded hover:bg-[#FFBB5B] transition">Prescription Upload</a>
           </nav>
         </div>
       </header>
@@ -589,8 +590,8 @@ const HomePage = () => {
                 <li>Oral Care</li>
               </ul>
             </div>
-            <a href="#" className="block navtop text-xs">About Us</a>
-            <a href="#" className="block navtop text-xs">Contact Us</a>
+            <Link to="/about" className="block navtop text-xs">About Us</Link>
+            <Link to="/contact" className="block navtop text-xs">Contact Us</Link>
             <a href="#" className="block navtop text-xs mt-1 py-1 text-center bg-[#1A3541] rounded">Prescription Upload</a>
           </nav>
         </div>
