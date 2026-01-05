@@ -448,9 +448,9 @@ const HomePage = () => {
         </div>
       </header>
 
-      <header className="bg-[#15ABAA] text-[white] text-xs h-[27px] desktop-header">
+      <header className="bg-[#00B4D8] text-[white] text-xs h-[27px] desktop-header">
         <div className="w-full py-2 flex flex-row-reverse items-center gap-6" style={{ color: '#0EA5A3', fontWeight:'700'}}>
-          <div className="flex items-center gap-6 text-white" style={{padding: '4px 8px',backgroundColor:'white', color: '#0EA5A3', fontWeight:'700'}}>
+          <div className="flex items-center gap-6 text-white" style={{padding: '4px 8px',backgroundColor:'white', color: '#00B4D8 ', fontWeight:'700'}}>
             <span><img src={phone} alt="Phone" className="inline-block w-4 h-4 mr-2 m-auto mb-[-2px]" /> +94 76 733 3377  +94 76 733 3377</span>
           </div>
           <div className="flex items-center gap-4">
@@ -463,7 +463,7 @@ const HomePage = () => {
       </header>
 
       {/* Logo Bar with Search */}
-      <header className="bg-[#0FABA3]/70 text-white shadow-sm desktop-header">
+      <header className="bg-[#00B4D8]/70 text-white shadow-sm desktop-header">
         <div className="w-full py-4 flex justify-between items-center gap-6 logo-search-row">
           <a href="#"><img src={logo} alt="OSUMEDURA PHARMACY" className="h-10 mx-[60px]" /></a>
 
@@ -497,7 +497,7 @@ const HomePage = () => {
       </header>
 
       {/* Navigation Links */}
-      <header className="bg-[#15ABAA] shadow-sm desktop-main-nav desktop-header">
+      <header className="bg-[#00B4D8] shadow-sm desktop-main-nav desktop-header">
         <div className="flex justify-center items-center h-[32px]">
           <nav className="flex items-center gap-8 text-sm font-medium text-white ml-[250px]">
             <div className="relative group ml-[-150px]">
@@ -507,7 +507,7 @@ const HomePage = () => {
                   <span className="hidden group-hover:block">▴</span>
                 </span>
               </a>
-                <div className="absolute left-[-280px] top-[26px] h-[65vh] w-[80vw] min-h-[320px] max-w-[1200px] max-h-[500px] bg-[#15ABAA] text-white shadow-2xl border-none opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 flex flex-row p-12 gap-12 items-stretch pointer-events-none group-hover:pointer-events-auto">
+                <div className="absolute left-[-280px] top-[26px] h-[65vh] w-[80vw] min-h-[320px] max-w-[1200px] max-h-[500px] bg-[#00B4D8] text-white shadow-2xl border-none opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 flex flex-row p-12 gap-12 items-stretch pointer-events-none group-hover:pointer-events-auto">
                   <div className="flex flex-col justify-center gap-6 w-1/2 pointer-events-auto">
                     <a href="#medical-devices/first-aid" className="block text-lg font-extrabold tracking-wider uppercase hover:underline hover:text-[#FFD6F6] transition cursor-pointer">First Aid</a>
                     <a href="#medical-devices/health-devices" className="block text-lg font-extrabold tracking-wider uppercase hover:underline hover:text-[#FFD6F6] transition cursor-pointer">Health Devices</a>
@@ -525,7 +525,7 @@ const HomePage = () => {
                   <span className="hidden group-hover:block">▴</span>
                 </span>
               </a>
-                <div className="absolute left-[-380px] top-[26px] h-[65vh] w-[80vw] min-h-[320px] max-w-[1200px] max-h-[500px] bg-[#15ABAA] text-white shadow-2xl border-none opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 flex flex-row p-12 gap-12 items-stretch pointer-events-none group-hover:pointer-events-auto">
+                <div className="absolute left-[-380px] top-[26px] h-[65vh] w-[80vw] min-h-[320px] max-w-[1200px] max-h-[500px] bg-[#00B4D8] text-white shadow-2xl border-none opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 flex flex-row p-12 gap-12 items-stretch pointer-events-none group-hover:pointer-events-auto">
                   <div className="flex flex-col justify-center gap-6 w-1/2 pointer-events-auto">
                     <a href="#wellness/vitamins" className="block text-lg font-extrabold tracking-wider uppercase hover:underline hover:text-[#FFD6F6] transition cursor-pointer">Vitamins</a>
                     <a href="#wellness/supplements" className="block text-lg font-extrabold tracking-wider uppercase hover:underline hover:text-[#FFD6F6] transition cursor-pointer">Supplements</a>
@@ -543,7 +543,7 @@ const HomePage = () => {
                   <span className="hidden group-hover:block">▴</span>
                 </span>
               </a>
-                <div className="absolute left-[-480px] top-[26px] h-[65vh] w-[80vw] min-h-[320px] max-w-[1200px] max-h-[500px] bg-[#15ABAA] text-white shadow-2xl border-none opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 flex flex-row p-12 gap-12 items-stretch pointer-events-none group-hover:pointer-events-auto">
+                <div className="absolute left-[-480px] top-[26px] h-[65vh] w-[80vw] min-h-[320px] max-w-[1200px] max-h-[500px] bg-[#00B4D8] text-white shadow-2xl border-none opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 flex flex-row p-12 gap-12 items-stretch pointer-events-none group-hover:pointer-events-auto">
                   <div className="flex flex-col justify-center gap-6 w-1/2 pointer-events-auto">
                     <a href="#personal-care/skin-care" className="block text-lg font-extrabold tracking-wider uppercase hover:underline hover:text-[#FFD6F6] transition cursor-pointer">Skin Care</a>
                     <a href="#personal-care/hair-care" className="block text-lg font-extrabold tracking-wider uppercase hover:underline hover:text-[#FFD6F6] transition cursor-pointer">Hair Care</a>
@@ -556,14 +556,14 @@ const HomePage = () => {
             </div>
             <a href="#" className="mr-[20px] navtop px-3 py-1 rounded hover:bg-[#0EA5A3]/30 transition hover:text-[#FFBB5B]">About Us</a>
             <a href="#" className="mr-[20px] navtop px-3 py-1 rounded hover:bg-[#0EA5A3]/30 transition hover:text-[#FFBB5B]">Contact Us</a>
-            <a href="#" className="navtop flex items-center justify-center w-[180px] h-[32px] bg-[#0D8C8B] px-4 rounded hover:bg-[#FFBB5B] transition">Prescription Upload</a>
+            <a href="#" className="navtop flex items-center justify-center w-[180px] h-[32px] bg-[#023E8A] px-4 rounded hover:bg-[#FFBB5B] transition">Prescription Upload</a>
           </nav>
         </div>
       </header>
 
       {/* Mobile navigation panel */}
       {mobileNavOpen && (
-        <div className="md:hidden bg-[#15ABAA] text-white px-6 py-4 space-y-3">
+        <div className="md:hidden bg-[#023E8A] text-white px-6 py-4 space-y-3">
           <nav className="text-sm font-medium space-y-3">
             <div>
               <p className="font-semibold">Medical Devices</p>
@@ -591,7 +591,7 @@ const HomePage = () => {
             </div>
             <a href="#" className="block navtop text-xs">About Us</a>
             <a href="#" className="block navtop text-xs">Contact Us</a>
-            <a href="#" className="block navtop text-xs mt-1 py-1 text-center bg-[#0D8C8B] rounded">Prescription Upload</a>
+            <a href="#" className="block navtop text-xs mt-1 py-1 text-center bg-[#1A3541] rounded">Prescription Upload</a>
           </nav>
         </div>
       )}
@@ -601,15 +601,15 @@ const HomePage = () => {
     <img src={hero} alt="Shopping Cart" className="absolute inset-0 w-full h-full object-cover object-right md:object-center opacity-80" />
 
   <div className="relative z-10 w-full md:w-1/2 flex flex-col items-start justify-center pl-[80px] md:pl-[120px] pr-6 min-h-[390px] max-w-[420px] hero-content">
-  <h1 className="mb-[-5px] text-[40px] text-[#0A7675] md:text-8xl md:text-[96px] lg:text-[112px] font-light text-gray-900 leading drop-shadow-lg hero-title w-[420px] md:w-[420px] lg:w-[420px] text-left">
+  <h1 className="mb-[-5px] text-[40px] text-[#1A3541] md:text-8xl md:text-[96px] lg:text-[112px] font-light leading drop-shadow-lg hero-title w-[420px] md:w-[420px] lg:w-[420px] text-left">
     Your Trusted Online Pharmacy
   </h1>
 
-  <p className="text-[#2C4544] text-lg text-gray-700 mb-8 drop-shadow opacity-75 hero-subtitle w-[420px] md:w-[420px] lg:w-[420px] text-left">
+  <p className="text-[#1A3541] text-lg text-gray-700 mb-8 drop-shadow opacity-75 hero-subtitle w-[420px] md:w-[420px] lg:w-[420px] text-left">
    Order 100% Genuine Medicines & HealthCare & Wellness Products Online with fast Home Delivery and expert care.
   </p>
 
-  <button className="bg-[#12A7A6] hover:bg-[#FFBB5B] h-[40px] w-[120px] text-white font-semibold px-8 py-3 rounded-full text-lg transition" style={{color:'white',border: 'none'}}>
+  <button className="bg-[#1A3541] hover:bg-[#FFBB5B] h-[40px] w-[120px] text-white font-semibold px-8 py-3 rounded-full text-lg transition" style={{color:'white',border: 'none'}}>
     Order Now
   </button>
 </div>
@@ -621,22 +621,22 @@ const HomePage = () => {
             <div className="h-[80px] flex flex-wrap md:flex-nowrap items-center justify-center services-container">
               <div className="flex items-center gap-[10px]">
                 <img src={delivery} alt="Delivery" className="w-12 h-12" />
-                <p className="text-base font-extrabold text-[#2C4544] mr-[30px] service-text">Home Delivery</p>
+                <p className="text-base font-extrabold text-[#023E8A] mr-[30px] service-text">Home Delivery</p>
               </div>
 
               <div className="flex items-center gap-[10px]">
                 <img src={lock} alt="Secure Payment" className="w-12 h-12" />
-                <p className="text-base font-extrabold text-[#2C4544] mr-[30px]">Pay Securely</p>
+                <p className="text-base font-extrabold text-[#023E8A] mr-[30px]">Pay Securely</p>
               </div>
 
               <div className="flex items-center gap-[10px]">
                 <img src={medicine} alt="Wide Range Of Assortments" className="w-12 h-12" />
-                <p className="text-base font-extrabold text-[#2C4544] mr-[30px]">Wide Range Of Assortments</p>
+                <p className="text-base font-extrabold text-[#023E8A] mr-[30px]">Wide Range Of Assortments</p>
               </div>
 
               <div className="flex items-center gap-[10px]">
                 <img src={customer} alt="Customer Service Support" className="w-12 h-12" />
-                <p className="text-base font-extrabold text-[#2C4544] mr-[30px]">Customer Service Support</p>
+                <p className="text-base font-extrabold text-[#023E8A] mr-[30px]">Customer Service Support</p>
               </div>
             </div>
           </div>
@@ -650,10 +650,10 @@ const HomePage = () => {
           {/* Medical Devices Card */}
           <div className="flex h-[250px] flex-row w-full max-w-[350px] md:w-[280px] bg-[#9FD8D4] rounded-xl shadow-lg px-[24px] py-[20px] hover:shadow-xl transition overflow-hidden feature-card items-center justify-between" style={{margin: '40px 16px'}}>
             <div className="flex flex-col justify-center space-y-3 w-1/2">
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 leading-tight">
+              <h3 className="text-xl px-[5px] md:text-2xl font-bold text-[#1A3541] leading-tight">
                 Medical<br />Devices
               </h3>
-              <button className="bg-[#0EA5A3] h-[35px] w-[100px] text-white font-semibold rounded-full hover:bg-[#0D8C8B] transition">
+              <button className="text-white h-[35px] w-[100px] bg-[#1A3541] hover:bg-[#FFBB5B] font-semibold rounded-full transition border-none outline-none flex items-center justify-center" style={{color:'#fff',border:'none'}}>
                 Shop Now
               </button>
             </div>
@@ -669,10 +669,10 @@ const HomePage = () => {
           {/* Baby Care Products Card */}
           <div className="flex h-[250px] flex-row w-full max-w-[350px] md:w-[280px] bg-[#C8E6C9] rounded-xl shadow-lg px-[24px] py-[20px] hover:shadow-xl transition overflow-hidden feature-card items-center justify-between" style={{margin: '40px 16px'}}>
             <div className="flex flex-col justify-center space-y-3 w-1/2">
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 leading-tight">
+              <h3 className="text-xl px-[5px] md:text-2xl font-bold text-[#1A3541] leading-tight">
                 Baby Care<br />Products
               </h3>
-              <button className="bg-[#12A7A6] h-[35px] w-[100px] text-white font-semibold rounded-full hover:bg-[#0D8C8B] transition">
+              <button className="text-white h-[35px] w-[100px] bg-[#1A3541] hover:bg-[#FFBB5B] font-semibold rounded-full transition border-none outline-none flex items-center justify-center" style={{color:'#fff',border:'none'}}>
                 Shop Now
               </button>
             </div>
@@ -688,10 +688,10 @@ const HomePage = () => {
           {/* Personal Care Products Card */}
           <div className="flex h-[250px] flex-row w-full max-w-[350px] md:w-[280px] bg-[#FFD4BF] rounded-xl shadow-lg px-[24px] py-[20px] hover:shadow-xl transition overflow-hidden feature-card items-center justify-between" style={{margin: '40px 16px'}}>
             <div className="flex flex-col justify-center space-y-3 w-1/2">
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 leading-tight">
+              <h3 className="text-xl px-[5px] md:text-2xl font-bold" style={{color:'#1A3541'}}>
                 Personal Care<br />Products
               </h3>
-              <button className="bg-[#12A7A6] h-[35px] w-[100px] text-white font-semibold rounded-full hover:bg-[#0D8C8B] transition">
+              <button className="text-white h-[35px] w-[100px] bg-[#1A3541] hover:bg-[#FFBB5B] font-semibold rounded-full transition border-none outline-none flex items-center justify-center" style={{color:'#fff',border:'none'}}>
                 Shop Now
               </button>
             </div>
@@ -814,7 +814,7 @@ const HomePage = () => {
               />
 
             <button
-              className="text-[white] h-[35px] w-[100px] bg-[#003C51] hover:bg-[#FFBB5B] text-white font-semibold rounded-full transition border-none outline-none flex items-center justify-center"
+              className="text-[white] h-[35px] w-[100px] bg-[#1A3541] hover:bg-[#FFBB5B] text-white font-semibold rounded-full transition border-none outline-none flex items-center justify-center"
               type="submit"
             >
              Subscribe
@@ -833,7 +833,7 @@ const HomePage = () => {
       {/* ---------------------------------------------------------------------- */}
       <footer className="w-full overflow-hidden">
         {/* Main Footer Section */}
-        <div className="bg-[#28A5A3] p-[60px] text-white pt-16 pb-12">
+        <div className="bg-[#00B4D8] p-[60px] text-white pt-16 pb-12">
           <div className="max-w-7xl mx-auto px-8">
             {/* Logo Row */}
             <div className="mb-12 mx-[60px] flex justify-center">

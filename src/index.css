@@ -8,7 +8,7 @@
 }
 html body .hero-title,
 html body .hero-subtitle {
-  color: #0a7675 !important;
+  color: #003A6B !important;
 }
 html body .hero-subtitle {
   font-size: 15px;
@@ -22,7 +22,7 @@ html body .hero-title {
   font-family: "Roboto", system-ui, -apple-system, "Segoe UI", "Helvetica Neue",
     Arial, sans-serif !important;
   font-weight: 700 !important;
-  color: #2c4544 !important;
+  color: #003A6B !important;
 }
 .services-container p {
   font-family: "Roboto", system-ui, -apple-system, "Segoe UI", "Helvetica Neue",
