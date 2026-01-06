@@ -419,7 +419,7 @@ const HomePage = () => {
       <section className="w-full max-w-[100vw] overflow-hidden">
     
       {/* Mobile header: only visible below 1070px */}
-      <header className="mobile-header bg-[#3fc1c9] px-3 pt-3 pb-3 w-full shadow-md" style={{display: 'none'}}>
+      <header className="mobile-header bg-[#00B4D8] px-3 pt-3 pb-3 w-full shadow-md md:hidden block">
         <div className="flex items-center justify-between w-full mb-3">
           <button
             type="button"
@@ -449,7 +449,7 @@ const HomePage = () => {
         </div>
       </header>
 
-      <header className="bg-[#00B4D8] text-[white] text-xs h-[27px] desktop-header">
+      <header className="bg-[#00B4D8] text-[white] text-xs h-[27px] desktop-header hidden md:block">
         <div className="w-full py-2 flex flex-row-reverse items-center gap-6" style={{ color: '#0EA5A3', fontWeight:'700'}}>
           <div className="flex items-center gap-6 text-white" style={{padding: '4px 8px',backgroundColor:'white', color: '#00B4D8 ', fontWeight:'700'}}>
             <span><img src={phone} alt="Phone" className="inline-block w-4 h-4 mr-2 m-auto mb-[-2px]" /> +94 76 733 3377  +94 76 733 3377</span>
@@ -464,9 +464,9 @@ const HomePage = () => {
       </header>
 
       {/* Logo Bar with Search */}
-      <header className="bg-[#00B4D8]/70 text-white shadow-sm desktop-header">
+      <header className="bg-[#00B4D8]/70 text-white shadow-sm desktop-header hidden md:block">
         <div className="w-full py-4 flex justify-between items-center gap-6 logo-search-row">
-          <a href="#"><img src={logo} alt="OSUMEDURA PHARMACY" className="h-10 mx-[60px]" /></a>
+          <a href="#"><img src={logo} alt="OSUMEDURA PHARMACY" className="h-10 mx-[60px] logo" /></a>
 
           <div className="flex-1 max-w-2xl text-center">
             <div className="relative">
@@ -498,7 +498,7 @@ const HomePage = () => {
       </header>
 
       {/* Navigation Links */}
-      <header className="bg-[#00B4D8] shadow-sm desktop-main-nav desktop-header">
+      <header className="bg-[#00B4D8] shadow-sm desktop-main-nav desktop-header hidden md:block">
         <div className="flex justify-center items-center h-[32px]">
           <nav className="flex items-center gap-8 text-sm font-medium text-white ml-[250px]">
             <div className="relative group ml-[-150px]">
@@ -564,7 +564,7 @@ const HomePage = () => {
 
       {/* Mobile navigation panel */}
       {mobileNavOpen && (
-        <div className="md:hidden bg-[#023E8A] text-white px-6 py-4 space-y-3">
+        <div className="md:hidden bg-[#00B4D8] text-white px-6 py-4 space-y-3">
           <nav className="text-sm font-medium space-y-3">
             <div>
               <p className="font-semibold">Medical Devices</p>

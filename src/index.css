@@ -1,3 +1,9 @@
+@media (max-width: 1069px) {
+  .add-padding-margin {
+    padding: 16px !important;
+    margin: 16px 0 !important;
+  }
+}
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;600;700&display=swap");
 /* Increase logo size for screens below 1070px */
 @media (max-width: 1069px) {
