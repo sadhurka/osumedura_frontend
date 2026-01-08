@@ -308,7 +308,6 @@ const AboutUs = () => {
                           </form>
                         </div>
                       </section>
-             
         </div>
       </main>
            

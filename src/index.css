@@ -1,10 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@media (max-width: 769px) {
+  .contact-section {
+    flex-direction: column !important;
+    gap: 20px !important;
+    align-items: stretch !important;
+  }
+  .contact-left,
+  .contact-right {
+    display: inline-block !important;
+    width: 100% !important;
+    vertical-align: top !important;
+  }
+}
+
 @media (max-width: 1069px) {
   .add-padding-margin {
     padding: 16px !important;
     margin: 16px 0 !important;
   }
 }
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;600;700&display=swap");
 /* Increase logo size for screens below 1070px */
 @media (max-width: 1069px) {
   img[alt="OSUMEDURA PHARMACY"] {
@@ -83,10 +100,6 @@ html body .hero-title {
     margin: 0 !important;
   }
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 html,
 body {
@@ -1283,5 +1296,275 @@ a:visited {
 @media (max-width: 480px) {
   .max-w-6xl h1 {
     font-size: 1.5rem !important;
+  }
+}
+
+/* Contact Page Styles */
+.contact-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  min-height: 60vh;
+}
+
+.contact-section {
+  display: flex;
+  gap: 60px;
+  max-width: 1100px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 40px 50px;
+}
+
+.contact-left,
+.contact-right {
+  flex: 1;
+}
+
+.contact-left {
+  padding-right: 40px;
+}
+
+.contact-right {
+  padding-left: 40px;
+}
+
+.contact-left h2,
+.contact-right h2 {
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  margin-bottom: 16px !important;
+  color: #1a3541 !important;
+  font-family: "Roboto", sans-serif !important;
+  line-height: 1.3 !important;
+  letter-spacing: -0.5px;
+}
+
+.contact-left p {
+  font-size: 14px !important;
+  color: #666 !important;
+  margin-bottom: 32px !important;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 400 !important;
+  line-height: 1.6 !important;
+}
+
+.contact-left ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 40px;
+}
+
+.contact-left ul li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px !important;
+  font-size: 14px !important;
+  color: #666 !important;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 400 !important;
+  line-height: 1.6 !important;
+}
+
+.contact-left ul li > span:first-child {
+  margin-right: 20px !important;
+  flex-shrink: 0;
+}
+
+.contact-left .social-icons {
+  display: flex;
+  gap: 12px;
+  margin-top: 48px;
+}
+
+.contact-left .social-icons a {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-left .social-icons a:hover {
+  background-color: #f3f4f6;
+}
+
+.contact-right p {
+  font-size: 14px !important;
+  color: #666 !important;
+  margin-bottom: 32px !important;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 400 !important;
+  line-height: 1.6 !important;
+}
+
+.contact-right form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-right form label {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #1a3541 !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px !important;
+  display: block;
+  font-family: "Roboto", sans-serif !important;
+}
+
+.contact-right form input,
+.contact-right form textarea {
+  width: 100% !important;
+  padding: 14px 18px !important;
+  background-color: #5bcbcc !important;
+  border: none !important;
+  border-radius: 4px !important;
+  color: white !important;
+  font-size: 15px !important;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 400 !important;
+}
+
+.contact-right form input::placeholder,
+.contact-right form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.contact-right form input:focus,
+.contact-right form textarea:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(0, 180, 216, 0.3) !important;
+}
+
+.contact-right form textarea {
+  min-height: 120px !important;
+  resize: vertical !important;
+}
+
+.contact-right form button {
+  padding: 14px 40px !important;
+  background-color: #1a3541 !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  align-self: flex-start;
+  transition: background-color 0.3s ease;
+  font-family: "Roboto", sans-serif !important;
+}
+
+.contact-right form button:hover {
+  background-color: #00b4d8 !important;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .contact-section {
+    max-width: 90%;
+    gap: 40px;
+    padding: 35px 40px;
+  }
+
+  .contact-left h2,
+  .contact-right h2 {
+    font-size: 28px !important;
+  }
+}
+
+@media (min-width: 770px) and (max-width: 1069px) {
+  .contact-page {
+    padding: 40px 30px;
+  }
+
+  .contact-section {
+    max-width: 90%;
+    gap: 50px;
+    padding: 40px 45px;
+  }
+
+  .contact-left {
+    padding-right: 25px !important;
+  }
+
+  .contact-right {
+    padding-left: 25px !important;
+  }
+
+  .contact-left h2,
+  .contact-right h2 {
+    font-size: 28px !important;
+  }
+
+  .contact-left p,
+  .contact-right p,
+  .contact-left ul li {
+    font-size: 14px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-page {
+    padding: 30px 20px;
+    min-height: auto;
+  }
+
+  .contact-section {
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px;
+    max-width: 95%;
+  }
+
+  .contact-left,
+  .contact-right {
+    padding: 0 !important;
+  }
+
+  .contact-left h2,
+  .contact-right h2 {
+    font-size: 24px !important;
+  }
+
+  .contact-left p,
+  .contact-right p,
+  .contact-left ul li {
+    font-size: 13px !important;
+  }
+
+  .contact-left ul li > span:first-child {
+    margin-right: 15px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-section {
+    padding: 20px;
+  }
+
+  .contact-left h2,
+  .contact-right h2 {
+    font-size: 20px !important;
+  }
+
+  .contact-right form button {
+    width: 100%;
+    text-align: center;
   }
 }
