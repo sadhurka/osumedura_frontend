@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-// InlineSlider removed. We'll render carousels directly below.
-import { fetchProducts } from '../api';
-// Assuming these imports are correct based on your file structure
 import logo from "../assets/logo.png";
 import hero from "../assets/hero.jpg";
 import phone from "../assets/phone.png";
@@ -28,88 +25,8 @@ import close from "../assets/close.png";
 const MenuIcon = ({ isOpen }) => (
   <img src={isOpen ? close : menu} alt={isOpen ? "Close" : "Menu"} className="w-[35px] h-[35px]" />
 );
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
-// ---------- COMPONENTS - CORRECTED PRODUCT CARD ----------
-const ProductCard = ({ product }) => {
-  const rating = product.rating || 0;
 
-  // Helper to render a precise star
-  const RenderStar = ({ index }) => {
-    const fillPercent = Math.max(0, Math.min(100, (rating - index) * 100));
-    const starId = `star-${product._id || product.id}-${index}`;
-
-    return (
-      <svg 
-        width="14" 
-        height="14" 
-        viewBox="0 0 24 24" 
-        className="inline-block"
-        style={{ marginRight: '1px' }}
-      >
-        <defs>
-          <linearGradient id={starId}>
-            <stop offset={`${fillPercent}%`} stopColor="#FFC107" />
-            <stop offset={`${fillPercent}%`} stopColor="#E0E0E0" />
-          </linearGradient>
-        </defs>
-        <path
-          fill={`url(#${starId})`}
-          d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
-        />
-      </svg>
-    );
-  };
-
-  return (
-    <div
-      key={product._id || product.id}
-      className="mb-[30px] flex flex-col bg-white rounded-2xl shadow-[0_4px_24px_0_rgba(14,165,163,0.10)] hover:shadow-[0_8px_32px_0_rgba(14,165,163,0.18)] transition-all duration-300 w-[210px] min-w-[210px] max-w-[210px] flex-shrink-0 overflow-hidden border border-[#e8f7f7] product-card"
-      style={{ height: 410, background: '#fff' }}
-    >
-      <div className="flex items-center justify-center bg-white rounded-xl p-4 mx-[20px] mt-[20px] h-[130px] flex-shrink-0" style={{ overflow: 'hidden' }}>
-        <img src={product.image} alt={product.name} className="object-contain w-auto transition-transform duration-300 hover:scale-105" style={{ maxHeight: '100%', maxWidth: '100%'}} />
-      </div>
-
-      <div className="text-[20px] flex-1 flex flex-col justify-between bg-white px-4 mx-[20px] mb-[20px]" style={{background:'#fff'}}>
-        <div>
-          <h3 className="text-base font-semibold text-[#2c4544] text-center leading-tight mb-[15px] px-3 py-2 min-h-[40px] flex items-center justify-center line-clamp-2">
-            {product.name}
-          </h3>
-          
-          {/* Unified Star and Font Size */}
-          <div className="flex items-center justify-center mb-[15px] px-3 py-1 gap-1">
-            <div className="flex items-center h-[14px]">
-              {[0, 1, 2, 3, 4].map((i) => (
-                <RenderStar key={i} index={i} />
-              ))}
-            </div>
-            {/* text-[14px] matches the SVG height exactly */}
-            <span className="text-[#4b5563] font-bold text-[14px] leading-none flex items-center">
-              {rating.toFixed(1)}
-            </span>
-            <span className="text-gray-400 text-[14px] leading-none flex items-center">
-              ({product.reviews || 0})
-            </span>
-          </div>
-
-          <div className="flex justify-center items-center mb-[15px] px-3 py-2">
-            <span className="bg-[#e8f7f7] text-[#00B4D8] font-semibold text-base px-5 py-2 rounded-full shadow-sm">
-              Rs {product.price}
-            </span>
-          </div>
-        </div>
-
-        <button
-          className="w-[160px] h-[35px] mx-auto text-base font-semibold border-2 border-[#00B4D8] text-[#00B4D8] rounded-lg bg-white hover:bg-[#00B4D8] hover:text-[white] transition-all duration-300 tracking-wide shadow-md px-4"
-          style={{ boxShadow: '0 2px 8px 0 rgba(14,165,163,0.10)' }}
-        >
-          VIEW PRODUCT
-        </button>
-      </div>
-    </div>
-  );
-};
 
 // ---------- ARTICLE CARD COMPONENT ----------
 const ArticleCard = ({ article }) => {
@@ -164,12 +81,6 @@ const ArticleCard = ({ article }) => {
 
 // ---------- PAGE ----------
 const HomePage = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [newArrivals, setNewArrivals] = useState([]);
-  const [bestSellers, setBestSellers] = useState([]);
-  const [topRated, setTopRated] = useState([]);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   // Static articles data
@@ -280,138 +191,13 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    let active = true;
-    setLoading(true);
-    
-    fetchProducts()
-      .then((data) => {
-        if (!active) return;
-        
-        console.log('=== MongoDB Category Analysis ===');
-        console.log('Total products received:', data.length);
-        
-        // Show all unique categories
-        const allCategories = [...new Set(data.map(p => p.category).filter(Boolean))];
-        console.log('All categories found:', allCategories);
-        
-        // Show sample products with their categories
-        console.log('Sample products with categories:');
-        data.slice(0, 5).forEach((p, index) => {
-          console.log(`${index + 1}. "${p.name}" -> Category: "${p.category}"`);
-        });
-        
-        const normalizeProduct = (p) => ({
-          id: p._id || p.id,
-          name: p.name,
-          price: p.price,
-          image: p.image || `data:image/svg+xml;utf8,${encodeURIComponent(
-            "<svg xmlns='http://www.w3.org/2000/svg' width='320' height='240'><rect width='100%' height='100%' fill='#ffffff'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='#0EA5A3' font-family='Arial' font-size='16'>No Image</text></svg>"
-          )}`,
-          rating: p.rating ?? 0,
-          reviews: p.reviews ?? 0,
-          category: p.category || '',
-          inStock: p.inStock ?? true,
-          createdAt: p.createdAt,
-          updatedAt: p.updatedAt,
-        });
-        
-        const normalized = data.map(normalizeProduct);
-        setProducts(normalized);
-        
-        // Create separate arrays to track which products have been assigned
-        const assignedProducts = new Set();
-        let newArrivalsProducts = [];
-        let bestSellersProducts = [];
-        let topRatedProducts = [];
-        
-        console.log('=== Starting Category Assignment (No Mixing) ===');
-        
-        // Priority 1: New Arrivals (exact category match first)
-        normalized.forEach(p => {
-          const cat = (p.category || '').toLowerCase();
-          if ((cat === 'new arrivals' || cat === 'new arrival' || cat === 'new' || 
-               cat === 'arrivals' || cat === 'recent') && !assignedProducts.has(p.id)) {
-            newArrivalsProducts.push(p);
-            assignedProducts.add(p.id);
-          }
-        });
-        
-        // Priority 2: Best Sellers (exact category match)
-        normalized.forEach(p => {
-          const cat = (p.category || '').toLowerCase();
-          if ((cat === 'best sellers' || cat === 'best seller' || cat === 'bestseller' || 
-               cat === 'best' || cat === 'popular' || cat === 'trending') && !assignedProducts.has(p.id)) {
-            bestSellersProducts.push(p);
-            assignedProducts.add(p.id);
-          }
-        });
-        
-        // Priority 3: Top Rated (exact category match or high rating)
-        normalized.forEach(p => {
-          const cat = (p.category || '').toLowerCase();
-          if (((cat === 'top rated' || cat === 'top-rated' || cat === 'toprated' || 
-                cat === 'premium' || cat === 'featured') || 
-               (p.rating >= 4.5)) && !assignedProducts.has(p.id)) {
-            topRatedProducts.push(p);
-            assignedProducts.add(p.id);
-          }
-        });
-        
-        // Get remaining unassigned products for fallback
-        const unassignedProducts = normalized.filter(p => !assignedProducts.has(p.id));
-        
-        console.log('=== Category Assignment Results ===');
-        console.log(`Total products: ${normalized.length}`);
-        console.log(`Assigned to categories: ${assignedProducts.size}`);
-        console.log(`Unassigned products: ${unassignedProducts.length}`);
-        
-        console.log(`New Arrivals (${newArrivalsProducts.length}):`, newArrivalsProducts.map(p => `"${p.name}" (${p.category})`));
-        console.log(`Best Sellers (${bestSellersProducts.length}):`, bestSellersProducts.map(p => `"${p.name}" (${p.category})`));
-        console.log(`Top Rated (${topRatedProducts.length}):`, topRatedProducts.map(p => `"${p.name}" (${p.category})`));
-        
-        // Fill sections with fallback from unassigned products if needed
-        if (newArrivalsProducts.length < 10 && unassignedProducts.length > 0) {
-          const needed = 10 - newArrivalsProducts.length;
-          const additional = unassignedProducts.splice(0, needed);
-          newArrivalsProducts.push(...additional);
-          additional.forEach(p => assignedProducts.add(p.id));
-          console.log(`Added ${additional.length} fallback products to New Arrivals`);
-        }
-        
-        if (bestSellersProducts.length < 10 && unassignedProducts.length > 0) {
-          const needed = 10 - bestSellersProducts.length;
-          const additional = unassignedProducts.splice(0, needed);
-          bestSellersProducts.push(...additional);
-          additional.forEach(p => assignedProducts.add(p.id));
-          console.log(`Added ${additional.length} fallback products to Best Sellers`);
-        }
-        
-        if (topRatedProducts.length < 10 && unassignedProducts.length > 0) {
-          const needed = 10 - topRatedProducts.length;
-          const additional = unassignedProducts.splice(0, needed);
-          topRatedProducts.push(...additional);
-          console.log(`Added ${additional.length} fallback products to Top Rated`);
-        }
-        
-        // Set final data - no product appears in multiple sections
-        setNewArrivals(newArrivalsProducts.slice(0, 10));
-        setBestSellers(bestSellersProducts.slice(0, 10));
-        setTopRated(topRatedProducts.slice(0, 10));
-        
-        setError(null);
-      })
-      .catch((e) => {
-        if (!active) return;
-        console.error('Error loading products:', e);
-        setError(`${e.message || 'Failed to load products'}`);
-      })
-      .finally(() => {
-        if (!active) return;
-        setLoading(false);
-      });
-    return () => {
-      active = false;
+    const handleResize = () => {
+      setScreenSize(window.innerWidth);
+      setArticleStartIndex(0); // Reset to first articles when screen size changes
     };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
   return (
    
@@ -419,8 +205,8 @@ const HomePage = () => {
       <section className="w-full max-w-[100vw] overflow-hidden">
     
       {/* Mobile header: only visible below 1070px */}
-      <header className="mobile-header bg-[#00B4D8] px-3 pt-3 pb-3 w-full shadow-md md:hidden block">
-        <div className="flex items-center justify-between w-full mb-3">
+      <header className="mobile-header bg-[#00B4D8] px-4 pt-3 pb-3 w-full shadow-md md:hidden block">
+        <div className="flex items-center justify-between w-full mb-4">
           <button
             type="button"
             className="p-2 bg-transparent border-none text-white"
@@ -430,21 +216,16 @@ const HomePage = () => {
             <MenuIcon isOpen={mobileNavOpen} />
           </button>
           <div className="flex-1 flex justify-center">
-            <img src={logo} alt="OSUMEDURA PHARMACY" className="h-36 md:h-9  logo1" style={{objectFit:'contain', maxHeight: '150px'}} />
+            <img src={logo} alt="OSUMEDURA PHARMACY" className="h-36 md:h-9 logo1" style={{objectFit:'contain', maxHeight: '150px'}} />
           </div>
-          <div className="flex items-center gap-1">
-            <div className="relative">
-              <img src={grocery} alt="Cart" className="w-3 h-3" />
-              <span className="absolute -top-2 -right-2 bg-[#ffbb5b] text-white text-xs font-bold rounded-full px-1.5 py-0.5 shadow">0</span>
-            </div>
+          <div className="flex items-center gap-2">
+            <img src={grocery} alt="Cart" className="w-[35px] h-[35px] mobile-cart" />
+            <span className="text-white text-sm font-bold">0</span>
           </div>
         </div>
-        <div className="w-full flex justify-center">
+        <div className="w-full flex justify-center mt-3">
           <div className="relative w-full">
-            <input id="search-input-mobile" name="search" type="text" placeholder="Search here" className="px-5 py-2 w-full rounded-full bg-white text-[#0EA5A3] border border-[#DFF2F6] focus:outline-none focus:ring-2 focus:ring-[#0EA5A3] text-base shadow" style={{paddingRight: '40px'}} />
-            <span className="absolute right-4 top-1/2 -translate-y-1/2">
-              <img src={search} alt="Search" className="w-5 h-5 opacity-70" />
-            </span>
+            <input id="search-input-mobile" name="search" type="text" placeholder="Search here" className="search1 px-5 py-2 w-full rounded-full bg-white text-[#0EA5A3] border border-[#DFF2F6] focus:outline-none focus:ring-2 focus:ring-[#0EA5A3] text-base shadow" />
           </div>
         </div>
       </header>
@@ -470,10 +251,7 @@ const HomePage = () => {
 
           <div className="flex-1 max-w-2xl text-center">
             <div className="relative">
-                <input id="search-input" name="search" type=" text" placeholder="Search here" className="px-[20px] py-2 w-[600px] h-[29px] rounded-full bg-white text-[#0EA5A3] border border-[#DFF2F6] focus:outline-none focus:ring-2 focus:ring-[#0EA5A3] text-sm shadow "/>
-                 <span className="absolute right-3 top-1/2 -translate-y-1/2">
-                  <img src={search} alt="Search" className="w-5 h-5 ml-[-35px] "/>
-                </span>
+                <input id="search-input" name="search" type=" text" placeholder="Search here" className="search1 px-[20px] py-2 w-[600px] h-[29px] rounded-full bg-white text-[#0EA5A3] border border-[#DFF2F6] focus:outline-none focus:ring-2 focus:ring-[#0EA5A3] text-sm shadow " style={{paddingRight: '50px'}}/>
             </div>
           </div>
 
@@ -508,14 +286,22 @@ const HomePage = () => {
                   <span className="hidden group-hover:block">▴</span>
                 </span>
               </a>
-                <div className="absolute left-[-280px] top-[26px] h-[65vh] w-[80vw] min-h-[320px] max-w-[1200px] max-h-[500px] bg-[#00B4D8] text-white shadow-2xl border-none opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 flex flex-row p-12 gap-12 items-stretch pointer-events-none group-hover:pointer-events-auto">
-                  <div className="flex flex-col justify-center gap-6 w-1/2 pointer-events-auto">
-                    <a href="#medical-devices/first-aid" className="block text-lg font-extrabold tracking-wider uppercase hover:underline hover:text-[#FFD6F6] transition cursor-pointer">First Aid</a>
-                    <a href="#medical-devices/health-devices" className="block text-lg font-extrabold tracking-wider uppercase hover:underline hover:text-[#FFD6F6] transition cursor-pointer">Health Devices</a>
-                    <a href="#medical-devices/supports-braces" className="block text-lg font-extrabold tracking-wider uppercase hover:underline hover:text-[#FFD6F6] transition cursor-pointer">Supports & Braces</a>
+                <div className="mega-panel absolute left-[-280px] top-[26px] h-[65vh] w-[80vw] min-h-[320px] max-w-[1200px] max-h-[500px] bg-[#00B4D8] text-white shadow-2xl border-none opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 flex flex-row p-12 gap-12 items-stretch pointer-events-none group-hover:pointer-events-auto">
+                  <div className="mega-panel-nav w-1/3 pointer-events-auto flex">
+                    <nav className="w-full flex flex-col justify-center">
+                      <ul className="space-y-6">
+                        <li><a href="#medical-devices/first-aid" className="text-white text-lg font-extrabold uppercase hover:text-[#FFD6F6] no-underline">First Aid</a></li>
+                        <li><a href="#medical-devices/health-devices" className="text-white text-lg font-extrabold uppercase hover:text-[#FFD6F6] no-underline">Health Devices</a></li>
+                        <li><a href="#medical-devices/supports-braces" className="text-white text-lg font-extrabold uppercase hover:text-[#FFD6F6] no-underline">Supports &amp; Braces</a></li>
+                      </ul>
+                    </nav>
                   </div>
-                  <div className="flex-1 flex items-center justify-center pointer-events-none">
-                    {/* Removed missing medical-devices.jpg image */}
+                  <div className="mega-panel-image w-2/3 pointer-events-none flex items-center justify-center">
+                    <div className="w-full pr-6">
+                      <div className="bg-white rounded shadow-lg overflow-hidden">
+                        <img src={medical} alt="medical-sample" className="w-full h-56 object-contain img-responsive" />
+                      </div>
+                    </div>
                   </div>
                 </div>
             </div>
@@ -526,14 +312,22 @@ const HomePage = () => {
                   <span className="hidden group-hover:block">▴</span>
                 </span>
               </a>
-                <div className="absolute left-[-380px] top-[26px] h-[65vh] w-[80vw] min-h-[320px] max-w-[1200px] max-h-[500px] bg-[#00B4D8] text-white shadow-2xl border-none opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 flex flex-row p-12 gap-12 items-stretch pointer-events-none group-hover:pointer-events-auto">
-                  <div className="flex flex-col justify-center gap-6 w-1/2 pointer-events-auto">
-                    <a href="#wellness/vitamins" className="block text-lg font-extrabold tracking-wider uppercase hover:underline hover:text-[#FFD6F6] transition cursor-pointer">Vitamins</a>
-                    <a href="#wellness/supplements" className="block text-lg font-extrabold tracking-wider uppercase hover:underline hover:text-[#FFD6F6] transition cursor-pointer">Supplements</a>
-                    <a href="#wellness/immunity" className="block text-lg font-extrabold tracking-wider uppercase hover:underline hover:text-[#FFD6F6] transition cursor-pointer">Immunity</a>
+                <div className="mega-panel absolute left-[-380px] top-[26px] h-[65vh] w-[80vw] min-h-[320px] max-w-[1200px] max-h-[500px] bg-[#00B4D8] text-white shadow-2xl border-none opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 flex flex-row p-12 gap-12 items-stretch pointer-events-none group-hover:pointer-events-auto">
+                  <div className="mega-panel-nav w-1/3 pointer-events-auto flex">
+                    <nav className="w-full flex flex-col justify-center">
+                      <ul className="space-y-6">
+                        <li><a href="#wellness/vitamins" className="text-white text-lg font-extrabold uppercase hover:text-[#FFD6F6] no-underline">Vitamins</a></li>
+                        <li><a href="#wellness/supplements" className="text-white text-lg font-extrabold uppercase hover:text-[#FFD6F6] no-underline">Supplements</a></li>
+                        <li><a href="#wellness/immunity" className="text-white text-lg font-extrabold uppercase hover:text-[#FFD6F6] no-underline">Immunity</a></li>
+                      </ul>
+                    </nav>
                   </div>
-                  <div className="flex-1 flex items-center justify-center pointer-events-none">
-                    {/* Removed missing wellness.jpg image */}
+                  <div className="mega-panel-image w-2/3 pointer-events-none flex items-center justify-center">
+                    <div className="w-full pr-6">
+                      <div className="bg-white rounded shadow-lg overflow-hidden">
+                        <img src={hero} alt="wellness-sample" className="w-full h-56 object-contain img-responsive" />
+                      </div>
+                    </div>
                   </div>
                 </div>
             </div>
@@ -544,14 +338,26 @@ const HomePage = () => {
                   <span className="hidden group-hover:block">▴</span>
                 </span>
               </a>
-                <div className="absolute left-[-480px] top-[26px] h-[65vh] w-[80vw] min-h-[320px] max-w-[1200px] max-h-[500px] bg-[#00B4D8] text-white shadow-2xl border-none opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 flex flex-row p-12 gap-12 items-stretch pointer-events-none group-hover:pointer-events-auto">
-                  <div className="flex flex-col justify-center gap-6 w-1/2 pointer-events-auto">
-                    <a href="#personal-care/skin-care" className="block text-lg font-extrabold tracking-wider uppercase hover:underline hover:text-[#FFD6F6] transition cursor-pointer">Skin Care</a>
-                    <a href="#personal-care/hair-care" className="block text-lg font-extrabold tracking-wider uppercase hover:underline hover:text-[#FFD6F6] transition cursor-pointer">Hair Care</a>
-                    <a href="#personal-care/oral-care" className="block text-lg font-extrabold tracking-wider uppercase hover:underline hover:text-[#FFD6F6] transition cursor-pointer">Oral Care</a>
+                <div className="mega-panel absolute left-[-480px] top-[26px] h-[65vh] w-[80vw] min-h-[320px] max-w-[1200px] max-h-[500px] bg-[#00B4D8] text-white shadow-2xl border-none opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 flex flex-row p-12 gap-12 items-stretch pointer-events-none group-hover:pointer-events-auto">
+                  <div className="mega-panel-nav w-1/3 pointer-events-auto flex">
+                    <nav className="w-full flex flex-col justify-center">
+                      <ul className="space-y-6">
+                        <li><a href="#personal-care/nourishment" className="text-white text-lg font-extrabold uppercase hover:text-[#FFD6F6] no-underline">Nourishment</a></li>
+                        <li><a href="#personal-care/accessories" className="text-white text-lg font-extrabold uppercase hover:text-[#FFD6F6] no-underline">Accessories</a></li>
+                        <li><a href="#personal-care/skin-care" className="text-white text-lg font-extrabold uppercase hover:text-[#FFD6F6] no-underline">Skin Care</a></li>
+                        <li><a href="#personal-care/hand-foot" className="text-white text-lg font-extrabold uppercase hover:text-[#FFD6F6] no-underline">Hand &amp; Foot Care</a></li>
+                        <li><a href="#personal-care/body-care" className="text-white text-lg font-extrabold uppercase hover:text-[#FFD6F6] no-underline">Body Care</a></li>
+                        <li><a href="#personal-care/womens" className="text-white text-lg font-extrabold uppercase hover:text-[#FFD6F6] no-underline">Womens Personal Care</a></li>
+                        <li><a href="#personal-care/oral-care" className="text-white text-lg font-extrabold uppercase hover:text-[#FFD6F6] no-underline">Oral Care</a></li>
+                      </ul>
+                    </nav>
                   </div>
-                  <div className="flex-1 flex items-center justify-center pointer-events-none">
-                    {/* Removed missing personal-care.jpg image */}
+                  <div className="mega-panel-image w-2/3 pointer-events-none flex items-center justify-center">
+                    <div className="w-full pr-6">
+                      <div className="bg-white rounded shadow-lg overflow-hidden">
+                        <img src={personal} alt="personal-sample" className="w-full h-56 object-contain img-responsive" />
+                      </div>
+                    </div>
                   </div>
                 </div>
             </div>
@@ -707,87 +513,37 @@ const HomePage = () => {
         </section>
 
         {/* ---------------------------------------------------------------------- */}
-        {/* 4. PRODUCT CAROUSELS - REFACTORED TO USE <ProductCard /> */}
+        {/* 4. FEATURED ARTICLES SECTION - SIMPLIFIED */}
         {/* ---------------------------------------------------------------------- */}
 
-        {/* Products from Mongo-backed API */}
-        <div className="w-full max-w-7xl mx-auto mb-12 px-6"> {/* Added max-w-7xl and px-6 for centering/padding */}
-          {loading ? (
-            <div className="bg-[#E8F7F7] rounded-2xl p-8 shadow-lg text-center text-gray-700">Loading products…</div>
-          ) : error ? (
-            <div className="bg-[#FFE8E8] rounded-2xl p-8 shadow-lg text-center text-red-700">{error}</div>
-          ) : products.length === 0 ? (
-            <div className="bg-[#E8F7F7] rounded-2xl p-8 shadow-lg text-center text-gray-700">No products found. Add data to MongoDB and refresh.</div>
-          ) : (
-            <>
-              {/* New Arrivals Inline Flex Carousel */}
-              <section className="py-[30px] w-full mb-[50px] bg-[#D6EEF1] py-8 rounded-2xl mb-12">
-                <h2 className="px-[30px] text-2xl font-bold text-gray-800 mb-6 px-6 carousel-title">New Arrivals</h2>
-                <div className="overflow-x-auto px-2 mx-[30px] my-[10px] product-carousel-container">
-                  <div className="flex gap-[30px]" style={{width: 'max-content', boxSizing: 'border-box', WebkitOverflowScrolling: 'touch'}}>
-                    {newArrivals.map((item) => (
-                      <ProductCard key={item.id} product={item} />
-                    ))}
-                  </div>
-                </div>
-              </section>
+        <section className="py-[30px] mb-[50px] w-full bg-[#D6EEF1] py-8 rounded-2xl mb-12 max-w-7xl mx-auto">
+          <h2 className="px-[30px] text-2xl font-bold text-gray-800 mb-6">Latest Articles</h2>
+          <div className="flex items-center justify-center gap-[40px] px-[30px] articles-container">
+            {/* Left Navigation Button */}
+            <button
+              onClick={handlePrevArticles}
+              className="flex-shrink-0 w-[50px] h-[50px] rounded-full bg-[#00B4D8] text-white font-bold text-2xl flex items-center justify-center hover:bg-[#0090a7] hover:text-white transition shadow-lg hover:shadow-xl article-nav-button"
+              title="Previous articles"
+            >
+              ←
+            </button>
 
-              {/* Best Sellers Inline Flex Carousel */}
-              <section className="py-[30px] mb-[50px] w-full bg-[#D6EEF1] py-8 rounded-2xl mb-12">
-                <h2 className="px-[30px] text-2xl font-bold text-gray-800 mb-6 px-6 carousel-title">Best Sellers</h2>
-                <div className="overflow-x-auto px-2 mx-[30px] my-[10px] product-carousel-container">
-                  <div className="flex gap-[30px]" style={{width: 'max-content', boxSizing: 'border-box', WebkitOverflowScrolling: 'touch'}}>
-                    {bestSellers.map((item) => (
-                      <ProductCard key={item.id} product={item} />
-                    ))}
-                  </div>
-                </div>
-              </section>
+            <div className="flex justify-center items-center gap-[30px] flex-1 max-w-full" style={{boxSizing: 'border-box', minHeight: '440px'}}>
+              {currentArticles.map((article) => (
+                <ArticleCard key={article.id} article={article} />
+              ))}
+            </div>
 
-              {/* Top Rated Inline Flex Carousel */}
-              <section className="py-[30px] mb-[50px] w-full bg-[#D6EEF1] py-8 rounded-2xl mb-12">
-                <h2 className="px-[30px] text-2xl font-bold text-gray-800 mb-6 px-6 carousel-title">Top Rated</h2>
-                <div className="overflow-x-auto px-2 mx-[30px] my-[10px] product-carousel-container">
-                  <div className="flex gap-[30px]" style={{width: 'max-content', boxSizing: 'border-box', WebkitOverflowScrolling: 'touch'}}>
-                    {topRated.map((item) => (
-                      <ProductCard key={item.id} product={item} />
-                    ))}
-                  </div>
-                </div>
-              </section>
-
-              {/* Featured Articles Inline Flex Carousel */}
-              <section className="py-[30px] mb-[50px] w-full bg-[#D6EEF1] py-8 rounded-2xl mb-12">
-                <h2 className="px-[30px] text-2xl font-bold text-gray-800 mb-6">Featured Articles</h2>
-                <div className="flex items-center justify-center gap-[40px] px-[30px] articles-container">
-                  {/* Left Navigation Button */}
-                  <button
-                    onClick={handlePrevArticles}
-                    className="flex-shrink-0 w-[50px] h-[50px] rounded-full bg-[#00B4D8] text-white font-bold text-2xl flex items-center justify-center hover:bg-[#0090a7] hover:text-white transition shadow-lg hover:shadow-xl article-nav-button"
-                    title="Previous articles"
-                  >
-                    ←
-                  </button>
-
-                  <div className="flex justify-center items-center gap-[30px] flex-1 max-w-full" style={{boxSizing: 'border-box', minHeight: '440px'}}>
-                    {currentArticles.map((article) => (
-                      <ArticleCard key={article.id} article={article} />
-                    ))}
-                  </div>
-
-                  {/* Right Navigation Button */}
-                  <button
-                    onClick={handleNextArticles}
-                    className="flex-shrink-0 w-[50px] h-[50px] rounded-full bg-[#00B4D8] text-white font-bold text-2xl flex items-center justify-center hover:bg-[#0090a7] hover:text-white transition shadow-lg hover:shadow-xl article-nav-button"
-                    title="Next articles"
-                  >
-                    →
-                  </button>
-                </div>
-              </section>
-            </>
-          )}
-        </div>
+            {/* Right Navigation Button */}
+            <button
+              onClick={handleNextArticles}
+              className="flex-shrink-0 w-[50px] h-[50px] rounded-full bg-[#00B4D8] text-white font-bold text-2xl flex items-center justify-center hover:bg-[#0090a7] hover:text-white transition shadow-lg hover:shadow-xl article-nav-button"
+              title="Next articles"
+            >
+              →
+            </button>
+          </div>
+        </section>
 
         {/* ---------------------------------------------------------------------- */}
         {/* 6. NEWSLETTER SIGNUP */}
